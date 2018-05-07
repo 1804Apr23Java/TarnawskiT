@@ -128,6 +128,10 @@ SELECT EMP_BORN_AFTER() FROM DUAL;
 
 --7.1 INNER
 --Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
+--SELECT * 
+--FROM table1 INNER JOIN table2 
+--ON table1.column_name = table2.column_name; 
+
 --7.2 OUTER
 --Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
 --7.3 RIGHT

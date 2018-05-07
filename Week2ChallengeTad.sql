@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 --TABLE CREATION
 
 --Create a database with two tables:
@@ -221,5 +220,3 @@ BEGIN
 END;
 /
 SELECT SP_GIVE_RAISE() FROM DUAL;
-
->>>>>>> 206ba27e45fa6b908fa10f294af51bc880163c87

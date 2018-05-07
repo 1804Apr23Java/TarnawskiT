@@ -1,0 +1,47 @@
+--2.1 SELECT
+--Select all records from the Employee table.
+SELECT * FROM EMPLOYEE;
+
+--Insert two new records into Genre table 
+INSERT INTO GENRE VALUES (26, 'Thrash');
+INSERT INTO GENRE VALUES (27, 'Chopped and screwed');
+
+--Insert two new records into Employee table
+INSERT INTO EMPLOYEE(EMPLOYEEID, LASTNAME, FIRSTNAME) VALUES(9, 'Nowak', 'Joe');
+INSERT INTO EMPLOYEE(EMPLOYEEID, LASTNAME, FIRSTNAME) VALUES(10, 'Cambell', 'Stacy');
+
+--Insert two new records into Customer table
+SELECT * FROM CUSTOMER;
+INSERT INTO CUSTOMER(CUSTOMERID, FIRSTNAME, LASTNAME, EMAIL) VALUES(60, 'Max', 'Armstrong', 'armstrong@g.com');
+INSERT INTO CUSTOMER(CUSTOMERID, FIRSTNAME, LASTNAME, EMAIL) VALUES(61, 'John', 'Lis', 'something@gm.com');
+--Update Aaron Mitchell in Customer table to Robert Walter
+UPDATE CUSTOMER SET FIRSTNAME = 'Robert', LASTNAME = 'Walter' WHERE CUSTOMERID = 32;
+--Update name of artist in the Artist table “Creedence Clearwater Revival” to “CCR”
+SELECT * FROM ARTIST ORDER BY NAME DESC;
+UPDATE ARTIST SET NAME = 'CCR' WHERE ARTISTID = 76;
+--Select all invoices with a billing address like “T%” 
+SELECT * FROM INVOICE;
+SELECT * FROM INVOICE WHERE BILLINGADDRESS LIKE 'T%';
+--Select all invoices that have a total between 15 and 50
+SELECT * FROM INVOICE WHERE TOTAL > 14 AND TOTAL < 51;
+--Select all employees hired between 1st of June 2003 and 1st of March 2004
+SELECT * FROM EMPLOYEE
+WHERE HIREDATE > TO_DATE('2003-06-01 00:00:00','yyyy-mm-dd hh24:mi:ss') 
+AND HIREDATE < TO_DATE('2004-03-01 00:00:00','yyyy-mm-dd hh24:mi:ss');
+--Delete a record in Customer table where the name is Robert Walter (There may be constraints that rely on this, find out how to resolve them).
+
+
+--3.1 System Defined Functions
+--Create a function that returns the current time.
+SELECT CONVERT(date, getdate());
+
+--create a function that returns the length of name in MEDIATYPE table
+CREATE OR REPLACE FUNCTION getLength (NAME IN VARCHAR2)
+RETURN length as
+Begin
+    Select * INTO length;
+    return length;
+END;
+/
+select getLength(MEDIATYPE.name) from dual;
+SELECT * FROM MEDIATYPE;
