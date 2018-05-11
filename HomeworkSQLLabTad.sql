@@ -99,15 +99,8 @@ END;
 /
 SELECT AVG_PRICE_INVOICELINE() FROM DUAL;
 --3.4 User Defined Table Valued Functions
---Create a function that returns all employees who are born after 1968.
-CREATE OR REPLACE FUNCTION EMP_BORN_AFTER
-RETURN VARCHAR
-IS EMP1968 VARCHAR;
-BEGIN
-    SELECT BIRTHDAY FROM EMPLOYEE WHERE BIRTHDATE > TO_DATE('1968-01-01 00:00:00','yyyy-mm-dd hh24:mi:ss') INTO EMP1968; 
-    RETURN EMP1968;
-END;
-SELECT EMP_BORN_AFTER() FROM DUAL;
+SELECT * FROM EMPLOYEE WHERE BIRTHDATE > TO_DATE('1968-01-01 00:00:00','yyyy-mm-dd hh24:mi:ss'); 
+--SELECT EMP_BORN_AFTER() FROM DUAL;
 --4.0 Stored Procedures
 --4.1 Basic Stored Procedure
 --Create a stored procedure that selects the first and last names of all the employees.
@@ -128,15 +121,20 @@ SELECT EMP_BORN_AFTER() FROM DUAL;
 
 --7.1 INNER
 --Create an inner join that joins customers and orders and specifies the name of the customer and the invoiceId.
---SELECT * 
---FROM table1 INNER JOIN table2 
---ON table1.column_name = table2.column_name; 
-
+SELECT CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME, INVOICE.INVOICEID FROM CUSTOMER INNER JOIN INVOICE ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
 --7.2 OUTER
 --Create an outer join that joins the customer and invoice table, specifying the CustomerId, firstname, lastname, invoiceId, and total.
+SELECT CUSTOMER.CUSTOMERID, CUSTOMER.FIRSTNAME, CUSTOMER.LASTNAME, INVOICE.INVOICEID, INVOICE.TOTAL
+FROM CUSTOMER OUTER JOIN INVOICE ON CUSTOMER.CUSTOMERID = INVOICE.CUSTOMERID;
 --7.3 RIGHT
 --Create a right join that joins album and artist specifying artist name and title.
+SELECT ARTIST.NAME, ALBUM.TITLE FROM ALBUM RIGHT JOIN ARTIST ON ALBUM.ARTISTID = ARTIST.ARTISTID;
 --7.4 CROSS
 --Create a cross join that joins album and artist and sorts by artist name in ascending order.
+SELECT ALBUM.TITLE, ARTIST.NAME FROM ALBUM CROSS JOIN ARTIST ON ALBUM.ARTISTID = ARTIST.ARTISTID ORDER BY ARTIST.NAME DESC;
 --7.5 SELF
 --Perform a self-join on the employee table, joining on the reportsto column.
+--SELECT a.column_name, b.column_name... 
+--FROM table1 a, table1 b 
+--WHERE a.common_filed = b.common_field;
+SELECT 
