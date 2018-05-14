@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        body {
+            background-image: url("bookself.jpg");
+            background-repeat: repeat-x;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bookshelf</title>
+</head>
+
+<body>
+
+
+    <h2 style="color:darkorange">My Virtual Bookshelf</h2>
+    <p style="color:darkorange">Click on the button to open the dropdown menu and select a book</p>
+
+    <form>
+        <select name="mySelect" onchange="location = this.value;">
+            <!--<select id="mySelect" size="4">-->
+            <option value="https://en.wikipedia.org/wiki/The_Lord_of_the_Rings">The Lord of the Rings</option>
+            <option value="https://en.wikipedia.org/wiki/The_Old_Man_and_the_Sea">The Old Mand and the Sea</option>
+            <option value="https://en.wikipedia.org/wiki/Fahrenheit_451">Fahrenheit 451</option>
+            <option value="https://en.wikipedia.org/wiki/Animal_Farm">Animal Farm</option>
+        </select>
+    </form>
+    <br>
+
+    <!--removing books from the last index-->
+    <button onclick="myFunction()">Remove last option</button>
+
+    <script>
+        function myFunction() {
+            var x = document.getElementById("mySelect");
+            if (x.length > 0) {
+                x.remove(x.length - 1);
+            }
+        }
+    </script>
+
+</body>
+
+</html>
